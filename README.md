@@ -2,18 +2,18 @@
 
 lifeform accepts an id for a classification of life and fetches a portfolio of information.
 
-#### Install with NPM
+### Install with NPM
 
 ```bash
 npm install lifeform --save
 ```
 
-#### Getting Started
+### Getting Started
 At its simplest.
 
 ```js
 const lifeform = require('lifeform')
-console.log(await lifeform.find('123'))
+lifeform.find('123').then(console.log)
 
 /*{ [Object lifeform]
     
@@ -30,14 +30,14 @@ console.log(await lifeform.find('123'))
 }*/
 ```
 
-#### Find
+### Find
 
 The only method is `lifeform.find(id, [include])`.
 
-`[include]` is an object that allows you to specify which fields are returned. The example in the *Getting Started* section above shows the fields which are returned by default (all of them).
+`[include]` is an array that allows you to specify a list of keys to return. The example in the *Getting Started* section shows the fields which are returned by default (all of them).
 
 ```js
-console.log(await lifeform.find('123', ['name', 'articleShort']))
+lifeform.find('123', ['name', 'articleShort']).then(console.log)
 
 /*{ [Object lifeform]
 
@@ -47,7 +47,7 @@ console.log(await lifeform.find('123', ['name', 'articleShort']))
 }*/
 ```
 
-#### Notes
+### Notes
 
 - Conservative. Better no match than an incorrect match.
 - All of the functions that make API calls to external services have rate-limiters attached.
