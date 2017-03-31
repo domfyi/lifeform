@@ -1,7 +1,7 @@
 {
   "name": "lifeform",
   "version": "1.0.0",
-  "description": "",
+  "description": "Portfolio of life.",
   "main": "index.js",
   "scripts": {
     "test": "npm test"
