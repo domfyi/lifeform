@@ -1,6 +1,8 @@
 # lifeform
 
-lifeform accepts a 'life classification id' and fetches a portfolio of information.
+lifeform accepts a 'life classification id' and fetches a portfolio of information. It currently accepts ncbi ids only.
+
+> ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=**9612**
 
 ### Install with npm
 
