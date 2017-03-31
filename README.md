@@ -13,8 +13,7 @@ At its simplest.
 
 ```js
 const lifeform = require('lifeform')
-const bobby_bacteria = await lifeform.find('123')
-console.log(bobby_bacteria)
+console.log(await lifeform.find('123'))
 
 /*{ [Object lifeform]
     
@@ -26,20 +25,22 @@ console.log(bobby_bacteria)
     'image': 'imgur.com/b0bBy.png,
     'lineage' ['id_of_kingdom', 'id_of_family', 'id_of_genus', ],
     'links': [ { type: 'paper', title: '', url: '', } ],
-    'nearestVisualParent': [Object lifeform]
+    'nearestVisualParent': [Object lifeform],
+    'thumbnail': ';base64'
 }*/
 ```
 
+#### Find
+
 The only method is `lifeform.find(id, [include])`.
 
-#### Include
-
-`[include]` is an object that allows you to specify which fields are returned.
+`[include]` is an object that allows you to specify which fields are returned. The example in the *Getting Started* section above shows the fields which are returned by default (all of them).
 
 ```js
-const bob = await lifeform.find('123', ['name', 'articleShort'])
-console.log(bob)
+console.log(await lifeform.find('123', ['name', 'articleShort']))
+
 /*{ [Object lifeform]
+
     'id': '123',
     'name': 'bacterius bobberius',
     'articleShort': 'lorum ipsum chunk'
@@ -48,5 +49,5 @@ console.log(bob)
 
 #### Notes
 
+- Conservative. Better no match than an incorrect match.
 - All of the functions that make API calls to external services have rate-limiters attached.
-- All of the functions that make API calls to external services have limiters attached.
