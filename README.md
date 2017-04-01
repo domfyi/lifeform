@@ -1,7 +1,8 @@
 # lifeform
 
-lifeform accepts a 'life classification id' and fetches a portfolio of information. It currently accepts ncbi ids only.
+lifeform accepts a *life classification id* and fetches a portfolio of information. 
 
+> It currently accepts ncbi classification ids only.
 > ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=**9612**
 
 ### Install with npm
@@ -20,13 +21,13 @@ lifeform.find('123').then(console.log)
 /*{ [Object lifeform]
     
     'id': '123',
-    'name': 'bacterius bobberius',
     'article: [ 'lorum ipsum chunk', 'lorum ipsum chunk' ],
     'description': 'lorum ipsum chunk',
     'facts': { discoveryYear: 1998, },
     'image': 'imgur.com/b0bBy.png,
     'lineage' [ 'id_of_kingdom', 'id_of_family', 'id_of_genus', ],
     'links': [ { type: 'paper', title: '', url: '', } ],
+    'name': 'bacterius bobberius',
     'visualParent': [Object lifeform],
     'thumbnail': ';base64'
 }*/
