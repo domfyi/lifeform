@@ -35,16 +35,18 @@ lifeform.find('123').then(console.log)
 }*/
 ```
 
-### Images / parentWithImage
+### Images
 
 There are three different image attributes.
 
 If an image is found:
 
-    `imageURL` provides the url of a matched image.
-    `thumnail` processes that image into a small thumbnail encoded as base64.
+- `imageURL` provides the url of a matched image.
+- `thumnail` processes that image into a small thumbnail encoded as base64.
 
-If no image can be found, it will instead return the `parentWithImage` value. This is the id of the nearest parent that has an associated image. We walk up the tree of life until we find an ancestor with an image and then return this ancestor's id. This is so that a parent image could be used as a 'group placeholder' for this type of life which may be useful in some UX contexts.
+If no image can be found, it will instead return the `parentWithImage` value. This is the id of the nearest parent that has an associated image. We walk up the tree of life until we find an ancestor with an image and then return this ancestor's id. 
+
+> This is so that a parent image could be used as a 'group placeholder' for this type of life which may be useful in some UX contexts.
 
 
 ### Find
