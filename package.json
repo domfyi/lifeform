@@ -4,8 +4,16 @@
   "description": "Portfolio of life.",
   "main": "index.js",
   "scripts": {
+    "start": "node demo.js",
     "test": "npm test"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "nodemw": "^0.10.1",
+    "querystring": "^0.2.0",
+    "request-promise": "^4.2.0",
+    "wtf_wikipedia": "^0.8.7"
+  }
 }
