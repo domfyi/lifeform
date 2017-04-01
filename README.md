@@ -4,7 +4,7 @@ lifeform accepts a *life classification id* and fetches a portfolio of informati
 
 > Life classification ids are as assigned by ncbi.
 >
-> ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=**9612**
+> ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=**123**
 
 ### Install with npm
 
@@ -39,10 +39,12 @@ lifeform.find('123').then(console.log)
 
 There are three different image attributes.
 
-`imageURL` provides the url of a matched image.
-`thumnail` processes that image into a small thumbnail encoded as base64.
+If an image is found:
 
-If no image can be matched, it will instead return the `parentWithImage` value. This is the id of the nearest parent that has an associated image. We walk up the tree of ancestors until we find one with an image and then return its id. This is so that a parent image could be used as a 'group placeholder' for this type of life which may be useful in some UX situations.
+    `imageURL` provides the url of a matched image.
+    `thumnail` processes that image into a small thumbnail encoded as base64.
+
+If no image can be found, it will instead return the `parentWithImage` value. This is the id of the nearest parent that has an associated image. We walk up the tree of life until we find an ancestor with an image and then return this ancestor's id. This is so that a parent image could be used as a 'group placeholder' for this type of life which may be useful in some UX contexts.
 
 
 ### Find
