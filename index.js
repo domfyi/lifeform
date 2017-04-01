@@ -163,6 +163,7 @@ module.exports =
         const elapsed = `${(((new Date()) - requested) / 1000).toFixed(1)}s`
         
         resolve({
+          _meta: { requested, elapsed },
           id,
           article,
           description,
@@ -170,7 +171,6 @@ module.exports =
           imageURL,
           lineage,
           links,
-          meta: { requested, elapsed },
           name,
           parentWithImage,
           rank,
