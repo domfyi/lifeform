@@ -149,7 +149,7 @@ const getParentWithImage = (lineage) =>
 
 module.exports =
 {
-  find: id => {
+  find: (id, include) => {
     return new Promise(async (resolve, reject) => {
       try {
         const requested = new Date()

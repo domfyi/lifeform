@@ -53,6 +53,8 @@ lifeform.find('123', ['name', 'description']).then(console.log)
 }*/
 ```
 
+> Include is still a TODO.
+
 ### Images
 
 There are three different image attributes.
@@ -70,3 +72,10 @@ If no image can be found, it will instead return the `parentWithImage` value. Th
 
 - Conservative. Better no match than an incorrect match.
 - All of the functions that make API calls to external services need rate-limiters attached. Be careful, we're not cacheing anything and these services will block your IP in a heartbeat.
+
+### TODOs
+
+- `include` array parameter.
+- Thumbnail (cross platform)
+- Facts
+- Links
