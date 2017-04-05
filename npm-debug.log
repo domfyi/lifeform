@@ -44,11 +44,11 @@
 23 silly publish      querystring: '^0.2.0',
 23 silly publish      'request-promise': '^4.2.0',
 23 silly publish      wtf_wikipedia: '^0.8.7' },
-23 silly publish   readme: '# lifeform\n\nlifeform accepts a *life classification id* and fetches a portfolio of information. \n\n> Life classification ids are as assigned by ncbi.\n>\n> ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=**123**\n\n### Install with npm\n\n```bash\nnpm install lifeform --save\n```\n\n### Getting Started\nAt its simplest.\n\n```js\nconst lifeform = require(\'lifeform\')\nlifeform.find(\'123\').then(console.log)\n\n/*{ [Object lifeform]\n    \n    id: \'123\',\n    article: [ \'lorum ipsum chunk\', \'lorum ipsum chunk\' ],\n    description: \'lorum ipsum chunk\',\n    facts: { discoveryYear: 1998, },\n    imageURL: \'imgur.com/b0bBy.png,\n    lineage: [ \'id_of_kingdom\', \'id_of_family\', \'id_of_genus\', ],\n    links: [ { type: \'paper\', title: \'\', url: \'\', } ],\n    name: \'bacterius bobberius\',\n    parentWithImage: \'id\',\n    rank: \'species\',\n    thumbnail: \';base64\'\n}*/\n```\n\n\n### Find\n\nThe only method is `lifeform.find(id, [include])`.\n\n`[include]` is an array that allows you to specify a list of keys to return. The example in the *Getting Started* section above shows the fields which are returned by default (all of them).\n\n```js\nlifeform.find(\'123\', [\'name\', \'description\']).then(console.log)\n\n/*{ [Object lifeform]\n\n    id: \'123\',\n    name: \'bacterius bobberius\',\n    description: \'lorum ipsum chunk\'\n}*/\n```\n\n> Include is still a TODO.\n\n### Images\n\nThere are three different image attributes.\n\nIf an image is found:\n\n- `imageURL` provides the url of a matched image.\n- `thumnail` processes that image into a small thumbnail encoded as base64.\n\nIf no image can be found, it will instead return the `parentWithImage` value. This is the id of the nearest parent that has an associated image. We walk up the tree of life until we find an ancestor with an image and then return this ancestor\'s id. \n\n> This is so that a parent image could be used as a \'group placeholder\' for this type of life, which may be useful in some UX contexts.\n\n### Notes\n\n- Conservative. Better no match than an incorrect match.\n- All of the functions that make API calls to external services need rate-limiters attached. Be careful, we\'re not cacheing anything and these services will block your IP in a heartbeat.\n\n### TODOs\n\n- `include` array parameter.\n- Thumbnail (cross platform)\n- Facts\n- Links',
+23 silly publish   readme: '# lifeform\n\nlifeform accepts a *life classification id* and fetches a portfolio of information. \n\n> Life classification ids are as assigned by ncbi.\n>\n> ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=**123**\n\n### Install with npm\n\n```bash\nnpm install lifeform --save\n```\n\n### Getting Started\nAt its simplest.\n\n```js\nconst lifeform = require(\'lifeform\')\nlifeform.find(\'123\').then(console.log)\n\n/*{ [Object lifeform]\n    \n    id: \'123\',\n    article: [ \'lorum ipsum chunk\', \'lorum ipsum chunk\' ],\n    description: \'lorum ipsum chunk\',\n    facts: { discoveryYear: 1998, },\n    imageURL: \'imgur.com/b0bBy.png,\n    lineage: [ \'id_of_kingdom\', \'id_of_family\', \'id_of_genus\', ],\n    links: [ { type: \'paper\', title: \'Bacillus of the North\', url: \'\', } ],\n    name: \'bacterius bobberius\',\n    parentWithImage: \'id\',\n    rank: \'species\',\n    thumbnail: \';base64\'\n}*/\n```\n\n### Find\n\nThe only method is `lifeform.find(id, [include])`.\n\n`[include]` is an array that allows you to specify a list of keys to return. The example in the *Getting Started* section above shows the fields which are returned by default (all of them).\n\n```js\nlifeform.find(\'123\', [\'name\', \'description\']).then(console.log)\n\n/*{ [Object lifeform]\n\n    id: \'123\',\n    name: \'bacterius bobberius\',\n    description: \'lorum ipsum chunk\'\n}*/\n```\n\n> Include is still a TODO.\n\n### Images\n\nThere are three different image attributes.\n\nIf an image is found:\n\n- `imageURL` provides the url of a matched image.\n- `thumnail` processes that image into a small thumbnail encoded as base64.\n\nIf no image can be found, it will instead return the `parentWithImage` value. This is the id of the nearest parent that has an associated image. We walk up the tree of life until we find an ancestor with an image and then return this ancestor\'s id. \n\n> This is so that a parent image could be used as a \'visual group placeholder\' for this type of life, which may be useful in some UX contexts.\n\n### Notes\n\n- Conservative. Better no match than an incorrect match.\n- All of the functions that make API calls to external services need rate-limiters attached. Be careful, we\'re not cacheing anything and these services will block your IP in a heartbeat.\n\n### TODOs\n\n- `include` array parameter.\n- Thumbnail (cross platform)\n- Facts\n- Linkss',
 23 silly publish   readmeFilename: 'readme.md',
-23 silly publish   gitHead: 'a59b8e155c9d59dabb91799f27ba3e92b359c543',
+23 silly publish   gitHead: '79229a50789f3a22d37cc17be4604e8e5e59ae8e',
 23 silly publish   _id: 'lifeform@1.0.0',
-23 silly publish   _shasum: '22f7476595c565b6ab4dfcda1cd1654ab87db2fc',
+23 silly publish   _shasum: 'dad4e658f76e092e36361d211091c19b099f2c26',
 23 silly publish   _from: '.' }
 24 info lifecycle lifeform@1.0.0~prepublishOnly: lifeform@1.0.0
 25 silly lifecycle lifeform@1.0.0~prepublishOnly: no script for prepublishOnly, continuing
@@ -69,22 +69,22 @@
 33 silly publish uploading /Users/dvinyard/.npm/lifeform/1.0.0/package.tgz
 34 verbose request uri https://registry.npmjs.org/lifeform
 35 verbose request sending authorization for write operation
-36 info attempt registry request try #1 at 5:45:34 PM
+36 info attempt registry request try #1 at 9:55:20 AM
 37 verbose request using bearer token for auth
-38 verbose request id fdab5140e5e1502f
+38 verbose request id 7e9cb8b5288e3927
 39 http request PUT https://registry.npmjs.org/lifeform
 40 http 403 https://registry.npmjs.org/lifeform
 41 verbose headers { 'content-type': 'application/json',
 41 verbose headers   'cache-control': 'max-age=300',
 41 verbose headers   'content-length': '95',
 41 verbose headers   'accept-ranges': 'bytes',
-41 verbose headers   date: 'Sat, 01 Apr 2017 16:45:33 GMT',
+41 verbose headers   date: 'Wed, 05 Apr 2017 08:55:22 GMT',
 41 verbose headers   via: '1.1 varnish',
 41 verbose headers   connection: 'keep-alive',
-41 verbose headers   'x-served-by': 'cache-lhr6330-LHR',
+41 verbose headers   'x-served-by': 'cache-hhn1536-HHN',
 41 verbose headers   'x-cache': 'MISS',
 41 verbose headers   'x-cache-hits': '0',
-41 verbose headers   'x-timer': 'S1491065132.691942,VS0,VE1155',
+41 verbose headers   'x-timer': 'S1491382521.023535,VS0,VE1281',
 41 verbose headers   vary: 'Accept-Encoding' }
 42 verbose request invalidating /Users/dvinyard/.npm/registry.npmjs.org/lifeform on PUT
 43 error publish Failed PUT 403
