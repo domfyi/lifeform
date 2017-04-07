@@ -77,4 +77,5 @@ If no image can be found, it will instead return the `parentWithImage` value. Th
 - `include` array parameter.
 - Thumbnail (cross platform)
 - Facts
-- Linkss
+- Links
+- Rate limiters
