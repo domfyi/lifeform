@@ -74,7 +74,6 @@ If no image can be found, it will instead return the `parentWithImage` value. Th
 
 ### TODOs
 
-- `include` array parameter.
 - Thumbnail (cross platform)
 - Facts
 - Links
