@@ -153,16 +153,21 @@ module.exports =
     return new Promise(async (resolve, reject) => {
       try {
         const requested = new Date()
-
         const { name, rank, lineage, links } = await getFactsheet(id)
-        const { description, article } = await getText(name)
-        const { imageURL, thumbnail } = await getImage(name)
-        const parentWithImage = (!imageURL) ? await getParentWithImage(lineage) : false
+
+        if (!include || include.description || include.article || include.facts) {
+          const { description, article } = await getText(name)
+        }
+        if (!include || include.imageURL || include.thumbnail) {
+          const { imageURL, thumbnail } = await getImage(name)
+        }
+        if (!include || include.parentWithImage) {
+          const parentWithImage = (!imageURL) ? await getParentWithImage(lineage) : false
+        }
+
         const facts = { /* todo */ }
-      
         const elapsed = `${(((new Date()) - requested) / 1000).toFixed(1)}s`
-        
-        resolve({
+        let response = {
           id,
           article,
           description,
@@ -175,9 +180,13 @@ module.exports =
           rank,
           thumbnail,
           _meta: { requested, elapsed },
-        })
-      }
+        }
 
+        if (!filter) return resolve(response)
+        let filtered = {}
+        Object.keys(response).map(key => { if (response[key]) filtered[key] = response[key] })
+        return resolve(filtered)
+      }
       catch (error) { reject(error) }
     })
   }

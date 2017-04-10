@@ -17,7 +17,7 @@ At its simplest.
 
 ```js
 const lifeform = require('lifeform')
-lifeform.find('123').then(console.log)
+console.log(await lifeform.find('123'))
 
 /*{ [Object lifeform]
     
