@@ -114,6 +114,8 @@ const getImage = (name, include) =>
           wiki.getImageInfo(image, (error, data) => {
             if (data.url && data.width > minSizePX && data.height > minSizePX) {
               const imageURL = data.url
+              if (include && !include.thumbnail) return resolve({ imageURL, thumbnail: false })
+
               const thumbnail = 'todo'
               return resolve({ imageURL, thumbnail })
             }

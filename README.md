@@ -7,12 +7,10 @@ lifeform accepts a *life classification id* and fetches a portfolio of informati
 >
 > ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=**123**
 
-### Install with npm
-
-[![NPM](https://nodei.co/npm/lifeform.png)](https://npmjs.org/package/lifeform)
-
 ### Getting Started
 At its simplest.
+
+[![NPM](https://nodei.co/npm/lifeform.png)](https://npmjs.org/package/lifeform)
 
 ```js
 const lifeform = require('lifeform')
