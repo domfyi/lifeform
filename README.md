@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/lifeform.png)](https://npmjs.org/package/lifeform)
+
 # lifeform
 
 lifeform accepts a *life classification id* and fetches a portfolio of information. 
@@ -71,10 +73,3 @@ If no image can be found, it will instead return the `parentWithImage` value. Th
 
 - Conservative. Better no match than an incorrect match.
 - All of the functions that make API calls to external services need rate-limiters attached. Be careful, we're not cacheing anything and these services will block your IP in a heartbeat.
-
-### TODOs
-
-- Thumbnail (cross platform)
-- Facts
-- Links
-- Rate limiters
