@@ -1,4 +1,3 @@
-[![NPM](https://nodei.co/npm/lifeform.png)](https://npmjs.org/package/lifeform)
 
 # lifeform
 
@@ -10,9 +9,7 @@ lifeform accepts a *life classification id* and fetches a portfolio of informati
 
 ### Install with npm
 
-```bash
-npm install lifeform --save
-```
+[![NPM](https://nodei.co/npm/lifeform.png)](https://npmjs.org/package/lifeform)
 
 ### Getting Started
 At its simplest.
