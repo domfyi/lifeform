@@ -1,14 +1,19 @@
 
-
-
 // node test.js
 
 const lifeform = require('./index.js')
-lifeform.find('9612').then(console.log)
 
-
+it('wolf', async () => {
+  const wolf = await lifeform.find('9612')
+  await expect(wolf).toBeDefined()
+  await expect(wolf.name).toBeDefined()
+  await expect(wolf.rank).toBeDefined()
+  await expect(wolf.article.length).toBeGreaterThan(0)
+  await expect(wolf.lineage.length).toBeGreaterThan(0)
+})
 
 /*
+
   { 
 
   id: '9612',

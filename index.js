@@ -13,7 +13,7 @@ const request = require('request-promise')
 
 // We need do some pretty ugly scrapey stuff to be frank, especially to strip out the lineage. We are removing items that have been designated no rank from the lineage too, reducing noise. We are grabbing the name of the lifeform from the page titel. Look at that regex, yikes.
 
-const getFactsheet = id =>
+const getFactsheet = (id) =>
 {
   return new Promise(async (resolve, reject) => {
     const url = `${ ncbiPrefix }?mode=Info&id=${ id }`
@@ -58,9 +58,13 @@ const wtf_wikipedia = require("wtf_wikipedia")
 
 // This wtf_wikipedia runs a bunch of markup-stripping scripts to break it down to the pure words but it falls down a little. A bit of patching up here, we remove anything found inside either rounded or triangular brackets. For the description we are checking if the first sentance starts with the name of the lifeform and the word 'is'. We can strip that and have it still make semenatic sense.
 
-const getText = (name) =>
+const getText = (name, include) =>
 {
   return new Promise(function (resolve, reject) {
+    if (include && !include.description && !include.article) {
+      return resolve({ description: false, article: false })
+    }
+
     wtf_wikipedia.from_api(name, 'en', (markup) => {
       const data = (wtf_wikipedia.parse(markup))
       const summary = [...data.text.entries()].map(function (item) {
@@ -93,10 +97,13 @@ const minSizePX = 300
 
 // These callbacks are horrible. We need to promisify these STAT. Also, it's only checking the first image for suitability, it should check every single one in the array.
 
-const getImage = (name) =>
+const getImage = (name, include) =>
 {
   return new Promise(async (resolve, reject) => {
     try {
+      if (include && !include.imageURL && !include.thumbnail) {
+        return resolve({ imageURL: false, thumbnail: false })
+      }
       if (!name) return resolve()
       wiki.getArticle(name, true, (error, data, redirect) => {
         if (redirect && redirect.to) name = redirect.to
@@ -116,7 +123,7 @@ const getImage = (name) =>
       })
     }
     catch (error) {
-      resolve()
+      reject(error)
     }
   })
 }
@@ -127,9 +134,12 @@ const getImage = (name) =>
 
 // This runs down the lineage, looking for a parent with an image using the getImage method above on loop. Once it finds one it just returns the parents id.
 
-const getParentWithImage = (lineage) =>
+const getParentWithImage = (lineage, include) =>
 {
   return new Promise(async (resolve, reject) => {
+    if (include && !include.parentWithImage) {
+      return resolve({ parentWithImage: false })
+    }
     for (let item of lineage.reverse()) {
       try {
         let url = await getImage(item.name)
@@ -143,6 +153,7 @@ const getParentWithImage = (lineage) =>
 
 
 
+
 // Ship.
 
 // Facts, links, and thumbnail are still todo.
@@ -153,18 +164,10 @@ module.exports =
     return new Promise(async (resolve, reject) => {
       try {
         const requested = new Date()
-        const { name, rank, lineage, links } = await getFactsheet(id)
-
-        if (!include || include.description || include.article || include.facts) {
-          const { description, article } = await getText(name)
-        }
-        if (!include || include.imageURL || include.thumbnail) {
-          const { imageURL, thumbnail } = await getImage(name)
-        }
-        if (!include || include.parentWithImage) {
-          const parentWithImage = (!imageURL) ? await getParentWithImage(lineage) : false
-        }
-
+        const { name, rank, lineage, links } = await getFactsheet(id, include)
+        const { description, article } = await getText(name, include)
+        const { imageURL, thumbnail } = await getImage(name, include)
+        const parentWithImage = (!imageURL) ? await getParentWithImage(lineage, include) : false
         const facts = { /* todo */ }
         const elapsed = `${(((new Date()) - requested) / 1000).toFixed(1)}s`
         let response = {
@@ -182,7 +185,7 @@ module.exports =
           _meta: { requested, elapsed },
         }
 
-        if (!filter) return resolve(response)
+        if (!include) return resolve(response)
         let filtered = {}
         Object.keys(response).map(key => { if (response[key]) filtered[key] = response[key] })
         return resolve(filtered)

@@ -1,11 +1,11 @@
 {
   "name": "lifeform",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Portfolio of life.",
   "main": "index.js",
   "scripts": {
     "start": "node demo.js",
-    "test": "npm test"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +15,8 @@
     "querystring": "^0.2.0",
     "request-promise": "^4.2.0",
     "wtf_wikipedia": "^0.8.7"
+  },
+  "devDependencies": {
+    "jest": "^19.0.2"
   }
 }
