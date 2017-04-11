@@ -6,10 +6,21 @@ const lifeform = require('./index.js')
 it('wolf', async () => {
   const wolf = await lifeform.find('9612')
   await expect(wolf).toBeDefined()
+  await expect(wolf.id).toBeDefined()
   await expect(wolf.name).toBeDefined()
+  await expect(wolf.description).toBeDefined()
   await expect(wolf.rank).toBeDefined()
   await expect(wolf.article.length).toBeGreaterThan(0)
   await expect(wolf.lineage.length).toBeGreaterThan(0)
+})
+
+it('wolf [include]', async () => {
+  const wolf = await lifeform.find('9612', ['name', 'description'])
+  await expect(wolf).toBeDefined()
+  await expect(wolf.id).toBeDefined()
+  await expect(wolf.name).toBeDefined()
+  await expect(wolf.description).toBeDefined()
+  await expect(wolf.rank).toBeUndefined()
 })
 
 /*

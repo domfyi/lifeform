@@ -51,8 +51,6 @@ lifeform.find('123', ['name', 'description']).then(console.log)
 }*/
 ```
 
-> Include is still a TODO.
-
 ### Images
 
 There are three different image attributes.

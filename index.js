@@ -170,6 +170,7 @@ module.exports =
         const parentWithImage = (!imageURL) ? await getParentWithImage(lineage, include) : false
         const facts = { /* todo */ }
         const elapsed = `${(((new Date()) - requested) / 1000).toFixed(1)}s`
+        const _meta = { requested, elapsed }
         let response = {
           id,
           article,
@@ -182,12 +183,12 @@ module.exports =
           parentWithImage,
           rank,
           thumbnail,
-          _meta: { requested, elapsed },
+          _meta
         }
 
         if (!include) return resolve(response)
-        let filtered = {}
-        Object.keys(response).map(key => { if (response[key]) filtered[key] = response[key] })
+        let filtered = { id, _meta }
+        include.map(key => filtered[key] = response[key])
         return resolve(filtered)
       }
       catch (error) { reject(error) }
